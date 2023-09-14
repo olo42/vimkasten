@@ -42,7 +42,6 @@ local function zettel_title_to_filename(zettel_buf)
         return filename
     end
 end
-
 --
 --
 -- Insert Markdown link of the in Telescope selected file,
@@ -100,6 +99,11 @@ vim.api.nvim_create_user_command("ZettelCreate", function()
     local text = { "---", "title: " .. title, "date: " .. now, "---" }
     vim.api.nvim_win_set_buf(win, buf)
     vim.api.nvim_buf_set_lines(buf, 0, 0, false, text)
+    local zkpath = os.getenv("KASTEN")
+    vim.cmd('cd ' .. zkpath)
+    local filename = zettel_title_to_filename(buf)
+    vim.cmd("save " .. filename)
+    print(filename)
 end, {})
 --
 vim.api.nvim_create_user_command("ZettelWrite", function()
