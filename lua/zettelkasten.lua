@@ -79,12 +79,14 @@ function WriteFileNameToBuffer()
     require('telescope.builtin').live_grep(opts)
 end
 
-vim.keymap.set('n', '<leader>ml', "<cmd>lua WriteFileNameToBuffer()<CR>", { desc = "ZK - Markdown link document" })
+vim.keymap.set('n', '<leader>zl', "<cmd>lua WriteFileNameToBuffer()<CR>", { desc = "ZK - Markdown link document" })
 -- Go to Zettelkasten dir.
 -- Must be set as environment variable KASTEN
 vim.keymap.set('n', '<leader>zi', "<cmd>lua ZettelCd()<CR>",
     { desc = "ZK - cd to Zettelkasten directory" })
-
+-- Create a new Zettel (and write save it in the Kasten directory
+vim.keymap.set('n', '<leader>zc', "<cmd>lua ZettelCreate()<CR>",
+    { desc = "ZK - Create a new Zettel and save it to the Kasten directory" })
 -------------------------------------------------------------------------------
 --
 -- Let's create a function to create a new Zettelkasten Zettel
